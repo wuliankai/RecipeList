@@ -9,7 +9,7 @@ function Greeting() {
     if (currentHour >= 5 && currentHour <= 12) {
       setTimeOfDay("morning");
       setMealOfTime("breakfast");
-    } else if (currentHour >= 13 && currentHour <= 17) {
+    } else if (currentHour >= 13 && currentHour <= 16) {
       setTimeOfDay("afternoon");
       setMealOfTime("lunch");
     } else {
