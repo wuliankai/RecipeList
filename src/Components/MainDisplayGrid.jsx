@@ -13,6 +13,7 @@ import {
   ModalCloseButton,
   useDisclosure,
   Button,
+  Checkbox,
 } from "@chakra-ui/react";
 
 function MainDisplayGrid(props) {
@@ -20,14 +21,13 @@ function MainDisplayGrid(props) {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
 
   const handleImageClick = (recipe) => {
-    console.log(recipe);
     setSelectedRecipe(recipe);
     onOpen();
   };
 
   return (
     <>
-      {props.testRecipe.results?.map((eachEle) => (
+      {props.testRecipe.recipes?.map((eachEle) => (
         <Card key={eachEle.id}>
           <CardHeader>
             <Image
@@ -38,7 +38,7 @@ function MainDisplayGrid(props) {
           <CardBody>{eachEle.title}</CardBody>
         </Card>
       ))}
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} size="2xl">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
@@ -48,17 +48,25 @@ function MainDisplayGrid(props) {
           <ModalCloseButton />
           <ModalBody>
             <ul>
-              {selectedRecipe?.analyzedInstructions?.steps.map((eachStep) => (
-                <li>{JSON.stringify(eachStep)}</li>
-              ))}
+              {selectedRecipe?.analyzedInstructions?.["0"].steps?.map(
+                (eachStep) => (
+                  <Checkbox size="lg" key={eachStep.number}>
+                    {eachStep.step}
+                    <hr />
+                    <br />
+                  </Checkbox>
+                )
+              )}
             </ul>
           </ModalBody>
 
           <ModalFooter>
+            <Button bg="lightblue" selectedrecipe={selectedRecipe}>
+              Get Ingredients List
+            </Button>
             <Button colorScheme="blue" mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button variant="ghost">Secondary Action</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
