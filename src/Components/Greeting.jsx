@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Text } from "@chakra-ui/react";
 
 function Greeting() {
   const [timeOfDay, setTimeOfDay] = useState("");
@@ -19,9 +20,14 @@ function Greeting() {
   }, []);
 
   return (
-    <div>
+    <Text
+      fontFamily="Cabin Sketch"
+      fontSize="3.5rem"
+      color="white"
+      justify="center"
+    >
       Good {timeOfDay}, here are some {mealOfTime} recommendations:
-    </div>
+    </Text>
   );
 }
 

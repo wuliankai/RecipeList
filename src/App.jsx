@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Flex, Box, SimpleGrid } from "@chakra-ui/react";
+import { Flex, Box, SimpleGrid, Text } from "@chakra-ui/react";
 
 import TopNavBar from "./Components/TopNavBar";
 import SideNavBar from "./Components/SideNavBar";
@@ -7,7 +7,7 @@ import Greeting from "./Components/Greeting";
 import MainDisplayGrid from "./Components/MainDisplayGrid";
 
 function App() {
-  const apiKey = "343eece744cd4f2fba94856a0978f787";
+  const apiKey = "8ff8f5b118ee438ead94cf46eb4f9676";
   const [mealOfTime, setMealOfTime] = useState("");
 
   //===========================================================================
@@ -69,7 +69,10 @@ function App() {
 
   return (
     <>
-      <Flex bg="lightgreen" w="100vw" h="5vh" justify="center" align="center">
+      <Flex bg="#31343a" w="100vw" h="15vh" justify="center" align="center">
+        <Greeting />
+      </Flex>
+      <Flex bg="#31343a" w="100vw" h="7vh" justify="center" align="center">
         <TopNavBar
           handleSearch={handleSearch}
           searchTerm={searchTerm}
@@ -77,11 +80,8 @@ function App() {
           handleInputChange={handleInputChange}
         />
       </Flex>
-      <Flex bg="lightblue" w="100vw" h="3vh" justify="center" align="center">
-        <Greeting />
-      </Flex>
-      <Flex bg="lightblue">
-        <Box bg="lightblue" w="7vw" h="100vh" justify="center" align="center">
+      <Flex bg="#31343a">
+        <Box bg="#31343a" w="7vw" h="100vh" justify="center" align="center">
           <SideNavBar />
         </Box>
         <SimpleGrid flex="1" columns={5} spacingX={1} spacingY={2}>

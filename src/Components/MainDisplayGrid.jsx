@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import ShoppingList from "./ShoppingList";
 import {
   Card,
   CardHeader,
@@ -14,6 +16,8 @@ import {
   useDisclosure,
   Button,
   Checkbox,
+  VisuallyHidden,
+  Text,
 } from "@chakra-ui/react";
 
 function MainDisplayGrid(props) {
@@ -25,17 +29,23 @@ function MainDisplayGrid(props) {
     onOpen();
   };
 
+  localStorage.setItem("selectedRecipe", JSON.stringify(selectedRecipe));
+
   return (
     <>
       {props.testRecipe.recipes?.map((eachEle) => (
-        <Card key={eachEle.id}>
+        <Card key={eachEle.id} bg="#A1A09C">
           <CardHeader>
             <Image
               src={eachEle.image}
               onClick={() => handleImageClick(eachEle)}
             />
           </CardHeader>
-          <CardBody>{eachEle.title}</CardBody>
+          <CardBody>
+            <Text fontFamily="Walter Turncoat" color="white" fontSize="2rem">
+              {eachEle.title}
+            </Text>
+          </CardBody>
         </Card>
       ))}
       <Modal isOpen={isOpen} onClose={onClose} size="2xl">
@@ -61,9 +71,14 @@ function MainDisplayGrid(props) {
           </ModalBody>
 
           <ModalFooter>
-            <Button bg="lightblue" selectedrecipe={selectedRecipe}>
-              Get Ingredients List
-            </Button>
+            <Link to="/shoppinglist" target="_blank">
+              <Button>
+                Ingredient List
+                <VisuallyHidden>
+                  <ShoppingList selectedRecipe={selectedRecipe} />
+                </VisuallyHidden>
+              </Button>
+            </Link>
             <Button colorScheme="blue" mr={3} onClick={onClose}>
               Close
             </Button>
